@@ -15,7 +15,6 @@ from google.oauth2.credentials import Credentials
 from googleapiclient.http import MediaIoBaseDownload, MediaFileUpload
 import random
 from decimal import Decimal
-
 FIELD_SIZE = 10 ** 3
 
 SCOPES = ['https://www.googleapis.com/auth/drive']
@@ -85,7 +84,7 @@ def download_file(service, fileid):
     while done is False:
         status, done = downloader.next_chunk()
         print("Download %d%%." % int(status.progress() * 100))
-    with io.open("Downloads/encrypted.txt", "wb") as f:
+    with io.open("../encrypted.txt", "wb") as f:
         fh.seek(0)
         f.write(fh.read())
 
@@ -143,9 +142,9 @@ def reconstruct_secret(shares):
 # | |___| |\  | |___|  _ < | | |  __/ | |  | | |_| | |\  |
 # |_____|_| \_|\____|_| \_\|_| |_|    |_| |___\___/|_| \_|
 # ########################## ########################## ########################## #########################
+
 class App1(ttk.Frame):
     """ This application Performs the encryption process on the txt file """
-
     def __init__(self, master=None):
         ttk.Frame.__init__(self, master)
         self.grid()
@@ -232,21 +231,20 @@ class App1(ttk.Frame):
 
             with open(str(self.inp.get()), "r", encoding='utf8') as fin:
                 message = fin.read()
-            print(f"The message in the file is :\n{message}")
+            #print(f"The message in the file is :\n{message}")
             msg = [ord(i) for i in message]
             enc = [pow(i, e, n) for i in msg]
-            print("\nThe encrypted message is :")
+            #print("\nThe encrypted message is :")
             with open("encrypted.txt", "w", encoding='utf8') as fout:
                 for i in enc:
                     fout.write(chr(i))
-                    print(chr(i), end="")
+                    #print(chr(i), end="")
             upload_file(self.service)
         except ValueError:
             messagebox.showinfo("Error", "You can only use numbers.")
         finally:
             self.n.set("")
             self.t.set("")
-
 
 # ########################## ########################## ########################## #########################
 #  ____  _____ ____ ______   ______ _____ ___ ___  _   _
@@ -258,7 +256,6 @@ class App1(ttk.Frame):
 
 class App2(ttk.Frame):
     """ Application to Perform decryption """
-
     def __init__(self, master=None):
         ttk.Frame.__init__(self, master)
         self.grid()
@@ -345,15 +342,14 @@ class App2(ttk.Frame):
 
         with open("encrypted.txt", "r", encoding='utf8') as fin:
             encmsg = fin.read()
-        print(f"\nThe encrypted message is :\n{encmsg}")
+        #print(f"\nThe encrypted message is :\n{encmsg}")
         enc = [ord(i) for i in encmsg]
         dec = [pow(i, d, n) for i in enc]
-        print("\nThe decrypted message is :")
+        #print("\nThe decrypted message is :")
         with open("decrypted.txt", "w", encoding='utf8') as fout:
             for i in dec:
                 fout.write(chr(i))
-                print(chr(i), end="")
-        print()
+                #print(chr(i), end="")
 
 
 window = Tk()
