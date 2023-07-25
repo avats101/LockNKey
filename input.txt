@@ -1,0 +1,1 @@
+RSA encryption, in full Rivest-Shamir-Adleman encryption, type of public-key cryptography widely used for data encryption of e-mail and other digital transactions over the Internet.

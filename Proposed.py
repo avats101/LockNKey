@@ -50,10 +50,10 @@ def gcd(a, b):
 
 def encrypt():
 
-    # tracemalloc.start()
+    tracemalloc.start()
     num = int(input("Enter the total number of shares you wish to make : "))
     threshold = int(input("Enter the threshold number of shares required to reconstruct the key : "))
-    dstime=datetime.datetime.now()
+    # estime=datetime.datetime.now()
     p = 13
     q = 31
     r = 157
@@ -90,17 +90,17 @@ def encrypt():
         for i in enc:
             fout.write(chr(i))
             #print(chr(i), end="")
-    detime=datetime.datetime.now()
-    print("Time taken for Encryption",detime-dstime)
-    # snapshot = tracemalloc.take_snapshot()
-    # for stat in snapshot.statistics("filename"):
-    #     print(stat) 
-    # tracemalloc.stop()
+    # eetime=datetime.datetime.now()
+    # print("Time taken for Encryption",eetime-estime)
+    snapshot = tracemalloc.take_snapshot()
+    for stat in snapshot.statistics("filename"):
+        print(stat) 
+    tracemalloc.stop()
 
 
 def decrypt():
-   # tracemalloc.1start()
-    stime=datetime.datetime.now()
+    tracemalloc.start()
+    # dstime=datetime.datetime.now()
     p = 13
     q = 31
     r = 157
@@ -122,12 +122,12 @@ def decrypt():
         for i in dec:
             fout.write(chr(i))
             #print(chr(i), end="")
-    etime=datetime.datetime.now()
-    print("Time taken for Decryption",etime-stime)
-    # snapshot = tracemalloc.take_snapshot()
-    # for stat in snapshot.statistics("filename"):
-    #     print(stat) 
-    # tracemalloc.stop()
+    # detime=datetime.datetime.now()
+    # print("Time taken for Decryption",detime-dstime)
+    snapshot = tracemalloc.take_snapshot()
+    for stat in snapshot.statistics("filename"):
+        print(stat) 
+    tracemalloc.stop()
 
 
 choice = int(input("MENU\n1.Encryption\n2.Decryption\n\nEnter your choice : "))

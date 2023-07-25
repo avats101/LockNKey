@@ -1,13 +1,13 @@
 import tracemalloc
 import datetime
 import os
-# tracemalloc.start()
+tracemalloc.start()
 def gcd(a, b):
     if b == 0:
         return a
     else:
         return gcd(b, a % b)
-stime=datetime.datetime.now()
+# stime=datetime.datetime.now()
 p = 13
 q = 31
 r = 157
@@ -40,9 +40,9 @@ while True:
         for i in enc:
             fout.write(chr(i))
             #print(chr(i), end="")
-etime=datetime.datetime.now()
-print("Time taken for Encryption",etime-stime)
-# snapshot = tracemalloc.take_snapshot()
-# for stat in snapshot.statistics("filename"):
-#     print(stat) 
-# tracemalloc.stop()
+# etime=datetime.datetime.now()
+# print("Time taken for Encryption",etime-stime)
+snapshot = tracemalloc.take_snapshot()
+for stat in snapshot.statistics("filename"):
+    print(stat) 
+tracemalloc.stop()
